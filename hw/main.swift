@@ -7,9 +7,8 @@
 
 import Foundation
 
-print("Hello, World!")
 
-/////1. Написать функцию, которая определяет, четное число или нет.
+///1. Написать функцию, которая определяет, четное число или нет.
 func prov(number: Int)  {
     if number % 2 == 0 {
         print("Четное")
@@ -19,11 +18,9 @@ func prov(number: Int)  {
 }
 
 prov(number: 35)
-prov(number: 22)
-prov(number: 74)
-prov(number: 2)
 
-///2. Написать функцию, которая определяет, делится ли число без остатка на 3.
+
+/////2. Написать функцию, которая определяет, делится ли число без остатка на 3.
 func na3(number: Int)  {
     if number % 3 == 0 {
         print("Делится на 3 без остатка")
@@ -32,11 +29,9 @@ func na3(number: Int)  {
     }
 }
 na3(number: 33)
-na3(number: 3)
-na3(number: 12)
-na3(number: 74)
 
-///3.Создать возрастающий массив из 100 чисел
+
+/////3.Создать возрастающий массив из 100 чисел
 var integerArray = [Int]()
 func creatArr() -> [Int] {
 for i in 1...100 {
@@ -44,7 +39,16 @@ for i in 1...100 {
 }
     return integerArray
 }
-print(creatArr())
+//print(creatArr())
 
 
 ///4.Удалить из этого массива все четные числа и все числа, которые не делятся на 3.
+
+var filter2 = creatArr().filter({$0 % 2 == 0})// Фильтрует на 2
+var filter3 = creatArr().filter({$0 % 3 != 0})// Фильтрует на 3
+
+var goodArr = filter2 + filter3// Объеденил оба массива как мне кажется
+
+print(filter2)
+print(filter3)
+print(goodArr)
