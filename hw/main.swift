@@ -7,44 +7,101 @@
 
 import Foundation
 
-print("Hello, World!")
 
-/////1. Написать функцию, которая определяет, четное число или нет.
-func prov(number: Int)  {
-    if number % 2 == 0 {
-        print("Четное")
-    } else {
-        print("Не четное")
+// MARK:  - Изменяемые показатели
+enum engineStatus {
+    case start, stop
+}
+
+enum windowsState {
+    case open, closed
+}
+
+enum loadUnload {
+    case load, unload
+}
+
+enum trunkState {
+    case full, empty
+}
+
+
+
+//MARK:  -  Описание спортивной машины
+struct SportCar {
+    var brand: String
+    var year: Int
+    var capacityTrunk: Double
+    var capacity = 0.00
+    var engineStatus: engineStatus {
+        willSet {
+            if newValue == .start {
+                print("\(brand) engine is on")
+            } else {print("\(brand) engine is off")}
+        }
+    }
+    var windows: windowsState {
+        willSet {
+            if newValue == .open {
+                print("Windows is open")
+            } else {
+            print("Windows is close")
+        }
+    }
+}
+    var trunk: trunkState {
+        willSet {
+            if newValue == .full {
+                print("Trunk full")
+            } else {
+            print("Trunk empty")
+        }
+    }
+  }
+    init (brand: String, year: Int, capacity: Double) {
+        self.brand = brand
+        self.year = year
+        self.capacityTrunk = capacity
+        
+        print("\(self.brand) год \(self.year) вместимость багажника \(self.capacityTrunk)")
     }
 }
 
-prov(number: 35)
-prov(number: 22)
-prov(number: 74)
-prov(number: 2)
-
-///2. Написать функцию, которая определяет, делится ли число без остатка на 3.
-func na3(number: Int)  {
-    if number % 3 == 0 {
-        print("Делится на 3 без остатка")
-    } else {
-        print("Не делится на 3 без остатка")
+// MARK:  - Описание грузовой машины
+struct TrunkCar {
+    let brand: String
+    let year: Int
+    let capacityTrunk : Int
+    
+    /// Состояние двигателя
+    var engineStatus : engineStatus {
+        willSet {
+            if newValue == .start {
+                print("\(brand) engine is on")
+            } else {print("\(brand) engine is off")}
+        }
+    }
+    /// Состояние окон
+    var windows: windowsState {
+        willSet {
+            if newValue == .open {
+                print("Windows is open")
+            } else {
+            print("Windows is close")
+        }
     }
 }
-na3(number: 33)
-na3(number: 3)
-na3(number: 12)
-na3(number: 74)
-
-///3.Создать возрастающий массив из 100 чисел
-var integerArray = [Int]()
-func creatArr() -> [Int] {
-for i in 1...100 {
-    integerArray.append(i)
+    /// Состояние багажника
+    var trunk: trunkState {
+        willSet {
+            if newValue == .full {
+                print("Trunk full")
+            } else {
+            print("Trunk empty")
+        }
+    }
+ }
 }
-    return integerArray
-}
-print(creatArr())
 
 
-///4.Удалить из этого массива все четные числа и все числа, которые не делятся на 3.
+
