@@ -32,7 +32,7 @@ struct SportCar {
     var brand: String
     var year: Int
     var capacityTrunk: Double
-    var capacity = 0.00
+    var capacityFree = 0.00
     var engineStatus: engineStatus {
         willSet {
             if newValue == .start {
@@ -58,14 +58,26 @@ struct SportCar {
         }
     }
   }
-    init (brand: String, year: Int, capacity: Double) {
-        self.brand = brand
-        self.year = year
-        self.capacityTrunk = capacity
+    mutating func loadItem (_ item: Double ) -> String {
+        if item > 0 {
+            capacityFree += item
+        }
+        return "Load in trunk \(item)"
         
-        print("\(self.brand) год \(self.year) вместимость багажника \(self.capacityTrunk)")
     }
+    
+    mutating func unLoad (_ item: Double) -> String {
+        if item > 0 {
+            capacityFree -= item
+        }
+        return "Unload from trunk \(item)"
+    }
+    
+    
 }
+var bmw = SportCar.init(brand: "BMW", year: 2000, capacityTrunk: 300, capacityFree: 0, engineStatus: .stop, windows: .closed, trunk: .empty)
+
+
 
 // MARK:  - Описание грузовой машины
 struct TrunkCar {
@@ -102,6 +114,8 @@ struct TrunkCar {
     }
  }
 }
+
+
 
 
 
