@@ -6,127 +6,42 @@
 //
 
 import Foundation
-import SwiftUI
 
-
-// MARK: Enum
-enum carAction {
+class Person {
+    var name: String
+    var sureName: String
     
-    case openWindows
-    case closeWindows
-    case startEngine
-    case stopEngine
-    case turnOnAudio
-    case turnOffAudio
-    case openTrunk
-    case closeTrunk
-    
-}
-
-// MARK: Car Protocol
-protocol CarBaseProtocol {
-    // Брэнд
-    var brand: String {get set}
-    // Год
-    var year: String {get set}
-    // Цвет
-    var color: Color {get set}
-    
-    }
-
-// MARK: Sport Car
-final class sportCar: CarBaseProtocol {
-    // Брэнд
-    var brand: String
-    // Год
-    var year: String
-    // Цвет
-    var color: Color
-    // Объёем двигателя
-    var engineDisplacement: Double
-    // Время разгона
-    var accelerationTime : Double
-    // Вес машины
-    var weightCar: Double
-    
-    init(brand: String, year: String, color: Color, engineDisplacement: Double, accelerationTime: Double, weightCar: Double) {
-        self.brand = brand
-        self.year = year
-        self.color = color
-        self.engineDisplacement = engineDisplacement
-        self.accelerationTime = accelerationTime
-        self.weightCar = weightCar
+    init(name: String, sureName:String){
+        self.name = name
+        self.sureName = sureName
     }
 }
 
-
-// MARK: Trunk Car
-final class trunkCar: CarBaseProtocol {
-    // Брэнд
-    var brand: String
-    // Год
-    var year: String
-    // Цвет
-    var color: Color
-    // Объём кузова
-    var capacityTrunk: Double
-    // Мощность двигателя в Horse Power )
-    var hP: Double
-    
-    init(brand: String, year: String, color: Color, capacityTrunk: Double, hP: Double) {
-        self.brand = brand
-        self.year = year
-        self.color = color
-        self.capacityTrunk = capacityTrunk
-        self.hP = hP
+struct Queue <T> {
+    private var elements: [T] = []
+    mutating func add (_ element: T) {
+        elements.append(element)
     }
+    mutating func output (_ element: T) {
+        elements.removeFirst()
+    }
+    
     
 }
 
-// MARK: Extension
-
-extension CarBaseProtocol {
-    
-    var openWindows: String {
-        return "Окна \(brand) открыты"
-        }
-    var closeWindows: String {
-        return "Окна \(brand) закрыты"
-        }
-    var startEngine: String {
-        return "Двигатель запущен"
-    }
-    var stopEngine: String {
-        return "Двигатель заглушен"
-    }
-    var openTrunk: String {
-        return "Багажник открыт"
-    }
-    var closeTrunk: String {
-        return "Багажник закрыт"
-    }
-    
-    }
-
-extension sportCar: CustomStringConvertible {
+extension Person: CustomStringConvertible {
     var description: String {
-        return "\(self.brand) имеет двигатель объёмом \(engineDisplacement), цвет \(color), разгон \(accelerationTime), вес \(weightCar)"
+        return "В очереди находятся \(self.name) \(self.sureName)"
     }
 }
 
+var listPerson = Queue<Person>()
 
-extension trunkCar: CustomStringConvertible {
-    var description: String {
-        return "\(self.brand) выпущен \(year), цвет \(color), объём кузова \(capacityTrunk), мощность двигателя \(hP)"
-    }
-}
+listPerson.add(Person.init(name: "Alekse", sureName: "Zimnyakov"))
+listPerson.add(Person.init(name: "Oksana", sureName: "Zimnyakov"))
+listPerson.add(Person.init(name: "Stacy", sureName: "Alcosmoke"))
+listPerson.add(Person.init(name: "Tamara", sureName: "Erjanova"))
+listPerson.add(Person.init(name: "Who", sureName: "Knows"))
 
 
-
-var carOne = sportCar.init(brand: "BMW", year: "2005", color: .green, engineDisplacement: 2.0, accelerationTime: 9.3, weightCar: 1200)
-
-print(carOne.description)
-
-var trunkCarOne = trunkCar.init(brand: "HOWO", year: "2009", color: .white, capacityTrunk: 35000, hP: 235)
-
-print(trunkCarOne.description)
+print(listPerson)
