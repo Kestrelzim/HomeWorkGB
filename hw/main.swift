@@ -43,5 +43,9 @@ listPerson.add(Person.init(name: "Stacy", sureName: "Alcosmoke"))
 listPerson.add(Person.init(name: "Tamara", sureName: "Erjanova"))
 listPerson.add(Person.init(name: "Who", sureName: "Knows"))
 
-
 print(listPerson)
+
+let personList = ["Zimnyakov", "Zimnyakova", "Zimnyakovi", "Narziev", "Nasredin", "Erjan", "Egor"]
+
+print(personList.filter{$0.hasPrefix("N")}
+)
